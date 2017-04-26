@@ -1,12 +1,3 @@
-<?php
-/*
-* Codejudge
- * NANTIPAT TULLWATTANA SOFTWARE ENGINEER
- * Licensed under MIT License.
- *
- * Common header for most files
- */
-?>
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -22,10 +13,10 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
-      
+
       .footer {
         text-align: center;
-        font-size: 11px;
+        font-size: 12px;
       }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -58,4 +49,3 @@
           <a class="brand" href="#"><?php echo(getName()); ?></a>
           <div class="nav-collapse">
             <ul class="nav">
-

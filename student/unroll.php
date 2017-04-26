@@ -9,7 +9,7 @@ else
 ?>
 
 <li><a href="subject.php">Subject</a></li>
-<li><a href="logout.php">Logout</a></li>
+<li><a href="../logout.php">Logout</a></li>
 </ul>
 </div><!--/.nav-collapse -->
 </div>

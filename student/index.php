@@ -1,11 +1,5 @@
 <?php
-/*
- * Codejudge
- * NANTIPAT TULLWATTANA SOFTWARE ENGINEER
- * Licensed under MIT License.
- *
- * The main page that lists all the problem
- */
+
   require_once('../functions.php');
   if(!loggedin())
     header("Location: login.php");
@@ -15,7 +9,7 @@
 ?>
                   <li class="active"><a href="#">Problems</a></li>
               <li><a href="Subject.php">Subject </a></li>
-              <li><a href="subject_Container.php">subject_Container</a></li>
+              
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -31,8 +25,13 @@
       <ul class="nav nav-list">
         <li class="nav-header">AVAILABLE PROBLEMS</li>
         <?php
+         $subject_id = $_GET['subject_id'];
+         $event_name = $_GET['event_name'];
+
+
           // list all the problems from the database
-          $query = "SELECT * FROM problems";
+          //$query = "SELECT * FROM problems";
+           $query = "SELECT * FROM problems1 where event_name = '$event_name' and subject_id='$subject_id'";
             $result = mysql_query($query);
             if(mysql_num_rows($result)==0)
       echo("<li>None</li>\n"); // no problems are there
@@ -53,7 +52,7 @@
           $selected = $row;
           echo("<li class=\"active\"><a href=\"#\">".$row['name'].$tag."</a></li>\n");
                       } else
-                        echo("<li><a href=\"index.php?id=".$row['sl']."\">".$row['name'].$tag."</a></li>\n");
+                        echo("<li><a href=\"index.php?subject_id=$subject_id&event_name=$event_name&id=".$row['sl']."\">".$row['name'].$tag."</a></li>\n");
                   }
     }
   ?>

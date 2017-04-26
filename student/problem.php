@@ -1,11 +1,4 @@
 <?php
-/*
-* Codejudge
- * NANTIPAT TULLWATTANA SOFTWARE ENGINEER
- * Licensed under MIT License.
- *
- * The main page that lists all the problem
- */
 	require_once('../functions.php');
 	if(!loggedin())
 		header("Location: login.php");
@@ -13,11 +6,12 @@
 		include('header1.php');
 		connectdb();
 ?>
-              <li class="active"><a href="problem.php">Problems</a></li>
+              <li><a href="subject.php">Subject</a></li>
+							<li class="active"><a href="problem.php">Problems</a></li>
               <li><a href="submissions.php">Submissions</a></li>
               <li><a href="scoreboard.php">Scoreboard</a></li>
               <li><a href="account.php">Account</a></li>
-              <li><a href="logout.php">Logout</a></li>
+              <li><a href="../logout.php">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -33,8 +27,10 @@
       <ul class="nav nav-list">
         <li class="nav-header">AVAILABLE PROBLEMS</li>
         <?php
+				$subject_id = $_GET['subject_id'];
+				echo $subject_id ;
         	// list all the problems from the database
-        	$query = "SELECT * FROM problems";
+        	$query = "SELECT * FROM problems1";
           	$result = mysql_query($query);
           	if(mysql_num_rows($result)==0)
 			echo("<li>None</li>\n"); // no problems are there

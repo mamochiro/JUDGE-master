@@ -1,12 +1,7 @@
 <?php
-/*
- * Codejudge
- * NANTIPAT TULLWATTANA SOFTWARE ENGINEER
- * Licensed under MIT License.
- *
- * The main page that lists all the problem
- */
+
 require_once('../functions.php');
+connectdb();
 if(!loggedin())
   header("Location: login.php");
 else
@@ -14,14 +9,35 @@ else
 
 ?>
 
-<li><a href="subject.php">Subject</a></li>
-<li><a href="logout.php">Logout</a></li>
+<script language="JavaScript">
+function chkdel(){if(confirm('Want to Enroll this subject?')){
+	return true;
+}else{
+	return false;
+}
+}
+</script>
+
+
 </ul>
 </div><!--/.nav-collapse -->
 </div>
 </div>
 </div>
 
+<?php
+    $query = "SELECT `username` FROM `users`  WHERE sl ='".$_SESSION['sl']."'";
+    $result = mysql_query($query);
+
+    while($row = mysql_fetch_array($result,MYSQLI_NUM)) {
+       $username =  "$row[0]";
+    }
+     // echo $username ;
+     echo "<p align = 'right'><font size = '5'>คุณเข้าสู่ระบบในชื่อ
+     <a href='profile.php?username=$username'> $username </a><a href='../logout.php'>(LogOut)</a></font></p>" ;
+
+
+?>
 <div class="container">
 
   <tbody>
@@ -34,8 +50,9 @@ else
           </label>
           <select class="input" name="subject_id">
             <?php
-            connectdb();
-            $query = "SELECT subject_id,subject_name FROM subject WHERE teacher_id !='".$_SESSION['sl']."'";
+
+            $query = "SELECT `subject_id`, `subject_name` FROM `subject` WHERE subject_id NOT IN (SELECT subject_id FROM regis WHERE student_id ='".$_SESSION['sl']."')";
+            //$query = "SELECT subject_id,subject_name FROM subject WHERE teacher_id !='".$_SESSION['sl']."'";
 
 
             $subject_id ;
@@ -50,7 +67,7 @@ else
             echo "$row[1]";
             echo "</option>";
             echo "<div class='control is-grouped'>";
-            echo "<p class='control'>";
+            echo "<p class='control' >";
             echo "</div>";
             echo "</div>";
 
@@ -61,7 +78,7 @@ else
           <br><br><br>
         <div class="control is-grouped">
           <p class="control">
-            <button class="button is-primary">Submit</button>
+            <button class="button is-primary" onclick="return chkdel();">Submit</button>
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
           </p>
           </form>

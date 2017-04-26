@@ -10,7 +10,7 @@
 	if(!loggedin())
 		header("Location: login.php");
 	else
-		include('header.php');
+		include('header1.php');
 		connectdb();
 ?>
 
@@ -41,7 +41,7 @@
           echo("<div class=\"alert alert-error\">\nPlease enter all the details asked before you can continue!\n</div>");
         else if(isset($_GET['ferror']))
           echo("<div class=\"alert alert-error\">\nPlease enter a legal filename.\n</div>");
-          
+
         $query = "SELECT * FROM prefs";
         $result = mysql_query($query);
         $accept = mysql_fetch_array($result);
@@ -57,7 +57,7 @@
       <?php
         // display the problem statement
       	if(isset($_GET['id']) and is_numeric($_GET['id'])) {
-      		$query = "SELECT * FROM problems WHERE sl='".$_GET['id']."'";
+      		$query = "SELECT * FROM problems1 WHERE sl='".$_GET['id']."'";
           	$result = mysql_query($query);
           	$row = mysql_fetch_array($result);
       		include('markdown.php');
@@ -86,7 +86,7 @@
       <input type="hidden" name="lang" id="hlang" value="<?php if($num == 0) echo('c'); else echo($fields['lang']);?>"/>
       <div class="btn-group">
         <div id="blank"></div>
-        <a id="lang" class="btn dropdown-toggle" data-toggle="dropdown" href="#">Language: 
+        <a id="lang" class="btn dropdown-toggle" data-toggle="dropdown" href="#">Language:
         <?php
           if($num == 0) echo('C');
           else if($fields['lang']=='c') echo('C');
@@ -110,7 +110,7 @@
       <?php if($accept['accept'] == 1 and $status['status'] == 1) echo("<input type=\"submit\" value=\"Run\" class=\"btn btn-primary btn-large\"/>");
             else echo("<input type=\"submit\" value=\"Run\" class=\"btn disabled btn-large\" disabled=\"disabled\"/>");
       ?>
-      <span class="label label-info">You are allowed to use any of the following languages: 
+      <span class="label label-info">You are allowed to use any of the following languages:
       <?php $txt="";
         if($accept['c'] == 1) $txt = "C, ";
         if($accept['cpp'] == 1) $txt = $txt."C++, ";

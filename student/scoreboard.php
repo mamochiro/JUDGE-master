@@ -11,10 +11,11 @@
 		include('header1.php');
 		connectdb();
 ?>
+							<li><a href="subject.php">Subject</a></li>
               <li><a href="problem.php">Problems</a></li>
               <li><a href="submissions.php">Submissions</a></li>
               <li class="active"><a href="#">Scoreboard</a></li>
-              <li><a href="logout.php">Logout</a></li>
+              <li><a href="../logout.php">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

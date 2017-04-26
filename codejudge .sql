@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2017 at 11:41 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Apr 26, 2017 at 06:42 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -89,6 +89,79 @@ INSERT INTO `problems` (`sl`, `name`, `text`, `input`, `output`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `problems1`
+--
+
+CREATE TABLE `problems1` (
+  `problem_id` varchar(200) NOT NULL,
+  `sl` varchar(200) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `text` text NOT NULL,
+  `input` text NOT NULL,
+  `output` text NOT NULL,
+  `time` text NOT NULL,
+  `subject_id` varchar(200) NOT NULL,
+  `event_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `problems1`
+--
+
+INSERT INTO `problems1` (`problem_id`, `sl`, `name`, `text`, `input`, `output`, `time`, `subject_id`, `event_name`) VALUES
+('1', '2', 'n+2', 'INPUT \r\nN\r\nOUTPUT N+2', '2', '4', '1000', '977-001', 'Quiz_OOP'),
+('2', '3', 'qqqq', 'asdasdasdasdasdasd', '2', '3', '1222', '977-001', 'Quiz_OOP'),
+('4', '4', 'asdasd', 'asdasdasd', 'asdasdasd', 'asdasdasd', '11312312', '977-001', 'Mid');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profile`
+--
+
+CREATE TABLE `profile` (
+  `sl` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `profile`
+--
+
+INSERT INTO `profile` (`sl`, `name`, `lastname`) VALUES
+('6', 'sarawut5', 'nawawisitkul');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `regis`
+--
+
+CREATE TABLE `regis` (
+  `student_id` varchar(50) NOT NULL,
+  `subject_id` varchar(50) NOT NULL,
+  `subject_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `regis`
+--
+
+INSERT INTO `regis` (`student_id`, `subject_id`, `subject_name`) VALUES
+('5', '977-002', 'CPT'),
+('5', '977-123', 'client'),
+('5', '977-888', 'Os'),
+('5', '977-000', 'test'),
+('5', '977-001', 'OOP'),
+('6', '977-002', 'CPT'),
+('6', '977-003', 'database'),
+('6', '977-000', 'test'),
+('6', '977-000', 'test');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `solve`
 --
 
@@ -114,6 +187,17 @@ INSERT INTO `solve` (`sl`, `problem_id`, `username`, `status`, `attempts`, `soln
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `student_id` varchar(50) NOT NULL,
+  `student_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subject`
 --
 
@@ -128,12 +212,15 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `subject_name`, `Teacher_id`) VALUES
+('8786-88', 'sa', '3'),
 ('977-000', 'test', '3'),
-('977-001', 'OOP', '1'),
+('977-001', 'OOP', '3'),
 ('977-002', 'CPT', '2'),
 ('977-003', 'database', '3'),
 ('977-123', 'client', '3'),
-('977-888', 'Os', '3');
+('977-669', 'IT', '5'),
+('977-888', 'Os', '3'),
+('980-779', 'DDE', '3');
 
 -- --------------------------------------------------------
 
@@ -158,7 +245,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`sl`, `username`, `salt`, `hash`, `email`, `status`, `type`) VALUES
 (1, 'admin', 'bmu2w', 'bmkVMsQ70yhfc', 'keymasterviriya1150@gmail.com', 1, 1),
 (2, 'arm', '5i5i2', '5itZ3xhef4QLI', 'keymasterviriya1150@gmail.com', 1, 0),
-(3, 'aziz', '56vu4', '56706V.vDo81k', '', 1, 0);
+(3, 'aziz', '56vu4', '56706V.vDo81k', '', 1, 0),
+(5, 'mark', 'cnenz', 'cn8pK1Cu6sf3s', 'mamochiro11@gmail.com', 1, 0),
+(6, '5730213064', 'db1n4', 'db2/cCxQW5Qyw', 'mamochiro11@gmail.com', 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -179,10 +268,28 @@ ALTER TABLE `problems`
   ADD PRIMARY KEY (`sl`);
 
 --
+-- Indexes for table `problems1`
+--
+ALTER TABLE `problems1`
+  ADD PRIMARY KEY (`problem_id`);
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+  ADD PRIMARY KEY (`sl`);
+
+--
 -- Indexes for table `solve`
 --
 ALTER TABLE `solve`
   ADD PRIMARY KEY (`sl`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`student_id`);
 
 --
 -- Indexes for table `subject`
@@ -219,7 +326,7 @@ ALTER TABLE `solve`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
